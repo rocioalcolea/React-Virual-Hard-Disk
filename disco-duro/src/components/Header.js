@@ -1,10 +1,13 @@
-import Modals from "../Components/Modals";
+import Auth from "./Auth";
 import logo from "../img/logoColmena.png";
+import { Link } from "react-router-dom";
 
 export default function Header({ infoUsuario, setInfoUsuario }) {
   return (
     <header className="App-header">
-      <img src={logo} alt="logo" />
+      <Link to={"/"}>
+        <img src={logo} alt="logo" />
+      </Link>
 
       <p>Maicloud: La nube más hipster</p>
 
@@ -21,18 +24,7 @@ export default function Header({ infoUsuario, setInfoUsuario }) {
           </span>
         </div>
       ) : (
-        <div className="modales">
-          <Modals
-            label="Registrate"
-            infoUsuario={infoUsuario}
-            setInfoUsuario={setInfoUsuario}
-          />
-          <Modals
-            label="Login"
-            infoUsuario={infoUsuario}
-            setInfoUsuario={setInfoUsuario}
-          />
-        </div>
+        <Auth infoUsuario={infoUsuario} setInfoUsuario={setInfoUsuario} />
       )}
     </header>
   );

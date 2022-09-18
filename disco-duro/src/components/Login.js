@@ -2,7 +2,7 @@ import { Divider, Form, Label, Button } from "semantic-ui-react";
 import { useState } from "react";
 import { loginUserService } from "../services";
 
-export default function Login({ infoUsuario, setInfoUsuario, setOpen }) {
+export default function Login({ setOpen }) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -11,11 +11,12 @@ export default function Login({ infoUsuario, setInfoUsuario, setOpen }) {
     e.preventDefault();
 
     try {
-      await loginUserService({ email, password });
+      const data = await loginUserService({ email, password });
+      console.log(data);
     } catch (error) {
       setError(error.message);
     }
-    setInfoUsuario({ email: email, password: password });
+
     setOpen(false);
   };
 

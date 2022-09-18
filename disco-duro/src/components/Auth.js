@@ -1,5 +1,8 @@
+import { AuthContext } from "../context/AuthContext";
 import Modals from "./Modals";
+import { useContext } from "react";
 export default function Auth({ infoUsuario, setInfoUsuario }) {
+  const { token } = useContext(AuthContext);
   return (
     <nav className="modales">
       <Modals
@@ -12,6 +15,7 @@ export default function Auth({ infoUsuario, setInfoUsuario }) {
         infoUsuario={infoUsuario}
         setInfoUsuario={setInfoUsuario}
       />
+      <div>{token}</div>
     </nav>
   );
 }

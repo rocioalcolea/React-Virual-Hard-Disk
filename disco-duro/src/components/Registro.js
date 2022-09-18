@@ -1,6 +1,7 @@
 import { Button, Divider, Form, Label } from "semantic-ui-react";
 import { useState } from "react";
 import { registerUserService } from "../services";
+
 export default function Registro({ infoUsuario, setInfoUsuario, setOpen }) {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
@@ -22,7 +23,6 @@ export default function Registro({ infoUsuario, setInfoUsuario, setOpen }) {
       setError(error.message);
     }
 
-    console.log("antes", infoUsuario);
     setInfoUsuario({ name: nombre, email: email, password: password });
 
     setOpen(false);

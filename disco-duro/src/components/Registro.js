@@ -1,22 +1,40 @@
 import { Button, Divider, Form, Label } from "semantic-ui-react";
 import { useState } from "react";
+import { registerUserService } from "../services";
 export default function Registro({ infoUsuario, setInfoUsuario, setOpen }) {
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
   const [email, setEmail] = useState("");
   const [nombre, setNombre] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    if (password !== password2) {
+      setError("Las contraseñas no coinciden");
+      return;
+    }
+
+    try {
+      await registerUserService({ name: nombre, email, password });
+    } catch (error) {
+      setError(error.message);
+    }
+
     console.log("antes", infoUsuario);
-    setInfoUsuario({ name: nombre, mail: email, pass: password });
-    console.log("despues", infoUsuario);
+    setInfoUsuario({ name: nombre, email: email, password: password });
+
     setOpen(false);
   };
+
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Field>
         <input
           type="text"
           placeholder="Nombre"
+          required
           onChange={(e) => setNombre(e.target.value)}
         />
         <Label pointing>Introduce tu nombre de usuario</Label>
@@ -27,6 +45,7 @@ export default function Registro({ infoUsuario, setInfoUsuario, setOpen }) {
         <input
           type="email"
           placeholder="Email"
+          required
           onChange={(e) => setEmail(e.target.value)}
         />
         <Label pointing="left">Introduce tu email</Label>
@@ -40,7 +59,17 @@ export default function Registro({ infoUsuario, setInfoUsuario, setOpen }) {
         <input
           type="password"
           placeholder="Password"
+          required
           onChange={(e) => setPassword(e.target.value)}
+        />
+      </Form.Field>
+      <Form.Field inline>
+        <Label pointing="right">Repite tu contraseña</Label>
+        <input
+          type="password"
+          placeholder="Password"
+          required
+          onChange={(e) => setPassword2(e.target.value)}
         />
       </Form.Field>
       <Form.Field>
@@ -54,6 +83,7 @@ export default function Registro({ infoUsuario, setInfoUsuario, setOpen }) {
           type="submit"
           positive
         />
+        {error ? <p>{error}</p> : null}
       </Form.Field>
     </Form>
   );

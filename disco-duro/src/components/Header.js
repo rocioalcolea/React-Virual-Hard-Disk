@@ -8,9 +8,7 @@ export default function Header() {
       <Link to={"/"}>
         <img src={logo} alt="logo" />
       </Link>
-
       <p>Maicloud: La nube más hipster</p>
-
       <Auth />
     </header>
   );

@@ -1,6 +1,7 @@
 import { Button, Divider, Form, Label } from "semantic-ui-react";
 import { useState } from "react";
 import { registerUserService } from "../services";
+import { useNavigate } from "react-router-dom";
 
 export default function Registro({ setOpen }) {
   const [password, setPassword] = useState("");
@@ -8,6 +9,7 @@ export default function Registro({ setOpen }) {
   const [email, setEmail] = useState("");
   const [nombre, setNombre] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +21,7 @@ export default function Registro({ setOpen }) {
 
     try {
       await registerUserService({ name: nombre, email, password });
+      navigate("/confirmacion");
     } catch (error) {
       setError(error.message);
     }

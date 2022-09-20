@@ -1,18 +1,24 @@
 import { Divider, Form, Label, Button } from "semantic-ui-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { loginUserService } from "../services";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Login({ setOpen }) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const data = await loginUserService({ email, password });
-      console.log(data);
+      login(data);
+      navigate("/Home");
     } catch (error) {
       setError(error.message);
     }

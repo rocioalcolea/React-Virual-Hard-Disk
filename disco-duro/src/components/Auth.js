@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { Button } from "semantic-ui-react";
 
 export default function Auth({ infoUsuario, setInfoUsuario }) {
-  const { token, user, logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   return user ? (
     <p>
       Bienvenid@ <h4> {user.nombre}</h4>

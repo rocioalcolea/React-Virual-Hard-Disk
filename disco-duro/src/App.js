@@ -18,7 +18,10 @@ function App() {
         <Route path="/" element={<RaizPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/confirmacion" element={<ConfirmacionPage />} />
-        <Route path="/usuarios/validar/:id" element={<ValidarPage />} />
+        <Route
+          path="/usuarios/validar/:registrationCode"
+          element={<ValidarPage />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 

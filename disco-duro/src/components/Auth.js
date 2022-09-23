@@ -7,7 +7,7 @@ export default function Auth({ infoUsuario, setInfoUsuario }) {
   const { user, logout } = useContext(AuthContext);
   return user ? (
     <p>
-      Bienvenid@ <h4> {user.nombre}</h4>
+      Bienvenid@ <span>{user.nombre}</span>
       <Button onClick={() => logout()}>Salir</Button>
     </p>
   ) : (

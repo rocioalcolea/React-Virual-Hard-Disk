@@ -1,16 +1,11 @@
 .App {
-  text-align: center;
   height: 100%;
-}
-.App .description {
-  margin-left: 6rem;
 }
 
 #root {
   height: 100%;
 }
 .App-header {
-  /* background-color: #282c34; */
   background-color: #0095a7;
   min-height: 20vh;
   display: flex;
@@ -33,6 +28,7 @@ h1 {
 .App-main {
   background-color: #25c6d8;
   display: flex;
+
   flex-direction: row;
   align-items: center;
   color: white;
@@ -48,4 +44,8 @@ h1 {
 }
 .App-link {
   color: #61dafb;
+}
+
+.Lista {
+  margin-left: 3rem;
 }

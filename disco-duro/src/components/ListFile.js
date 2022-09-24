@@ -3,6 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 import FolderCard from "./FolderCard";
 import FileCard from "./FileCard";
 import { Table } from "semantic-ui-react";
+//import { listarFunctionService } from "../services";
 
 const ListFile = () => {
   const [lista, setLista] = useState([]);
@@ -22,9 +23,8 @@ const ListFile = () => {
 
       setLista(resData.data);
     };
-
     listarFunction();
-  }, [lista, token, user.id]);
+  }, [token, user.id]);
 
   return (
     <Table striped>

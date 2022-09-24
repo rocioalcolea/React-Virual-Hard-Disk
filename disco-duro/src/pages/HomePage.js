@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import ListFile from "../components/ListFile";
+import NewFolderModal from "../components/NewFolderModal";
+import UploadFileModal from "../components/UploadFileModal ";
 import { AuthContext } from "../context/AuthContext";
 
 export default function HomePage() {
@@ -9,8 +11,9 @@ export default function HomePage() {
     <>
       {user && token && (
         <div className="Lista">
-          <div>Componente uno, subir archivo</div>
-          <div>Componente dos, crear carpeta</div>
+          <NewFolderModal />
+          <UploadFileModal />
+
           <ListFile />
         </div>
       )}

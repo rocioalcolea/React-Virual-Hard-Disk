@@ -51,3 +51,43 @@ export const getMyUserDataService = async ({ token }) => {
   }
   return json.data;
 };
+
+/* export const listarFunctionService = async ({
+  lista,
+  setLista,
+  token,
+  user,
+}) => {
+  const res = await fetch(
+    `${process.env.REACT_APP_BACKEND}/folder/listar/${user.id}`,
+    {
+      headers: { Authorization: token },
+    }
+  );
+
+  const resData = await res.json();
+
+  setLista(resData.data);
+  return lista;
+}; */
+
+export const deleteFileService = async ({ id, token }) => {
+  await fetch(`${process.env.REACT_APP_BACKEND}/file/eliminar/${id}`, {
+    method: "DELETE",
+    headers: { Authorization: token },
+  });
+};
+
+export const deleteFolderService = async ({ id, token }) => {
+  await fetch(`${process.env.REACT_APP_BACKEND}/folder/eliminar/${id}`, {
+    method: "DELETE",
+    headers: { Authorization: token },
+  });
+};
+
+export const downloadFileService = async ({ id, token }) => {
+  await fetch(`${process.env.REACT_APP_BACKEND}/file/${id}`, {
+    method: "GET",
+    headers: { Authorization: token },
+  });
+};

@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import FolderCard from "./FolderCard";
-import { Icon, Table } from "semantic-ui-react";
+import FileCard from "./FileCard";
+import { Table } from "semantic-ui-react";
+
 const ListFile = () => {
   const [lista, setLista] = useState([]);
-  const [message, setMessage] = useState();
+
   const { user, token } = useContext(AuthContext);
 
   useEffect(() => {
@@ -19,14 +21,13 @@ const ListFile = () => {
       const resData = await res.json();
 
       setLista(resData.data);
-      setMessage(resData.message);
     };
 
     listarFunction();
   }, [lista, token, user.id]);
 
   return (
-    <Table celled striped>
+    <Table striped>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell colSpan="3">
@@ -36,7 +37,13 @@ const ListFile = () => {
       </Table.Header>
       <Table.Body>
         {lista[0] &&
-          lista[0].map((carpetas) => <FolderCard carpeta={carpetas} />)}
+          lista[0].map((carpeta) => (
+            <FolderCard carpeta={carpeta} key={carpeta.id_directorio} />
+          ))}
+        {lista[1] &&
+          lista[1].map((archivo) => (
+            <FileCard archivo={archivo} key={archivo.id_archivo} />
+          ))}
       </Table.Body>
     </Table>
   );

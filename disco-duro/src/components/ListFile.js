@@ -14,7 +14,7 @@ const ListFile = () => {
   const [key, setKey] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setKey((k) => k + 1), 10000);
+    const t = setInterval(() => setKey((k) => k + 1), 2000);
     return () => clearInterval(t);
   }, []);
 

@@ -8,15 +8,22 @@ import {
   Divider,
   Label,
 } from "semantic-ui-react";
+import { newFolderService } from "../services";
+
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 
 function NewFolderModal() {
+  const { token } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
-  const [folderName, setFolderName] = useState("");
+  const [nombreCarpeta, setNombreCarpeta] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      const data = await newFolderService({ nombreCarpeta, token });
+      console.log(data);
     } catch (error) {}
 
     setOpen(false);
@@ -47,7 +54,7 @@ function NewFolderModal() {
               type="text"
               placeholder="Nombre Nueva Carpeta"
               required
-              onChange={(e) => setFolderName(e.target.value)}
+              onChange={(e) => setNombreCarpeta(e.target.value)}
             />
             <Label pointing="left">
               Introduce el nombre de la nueva carpeta

@@ -52,14 +52,9 @@ export const getMyUserDataService = async ({ token }) => {
   return json.data;
 };
 
-/* export const listarFunctionService = async ({
-  lista,
-  setLista,
-  token,
-  user,
-}) => {
+export const listarFunctionService = async (lista, setLista, token, id) => {
   const res = await fetch(
-    `${process.env.REACT_APP_BACKEND}/folder/listar/${user.id}`,
+    `${process.env.REACT_APP_BACKEND}/folder/listar/${id}`,
     {
       headers: { Authorization: token },
     }
@@ -69,7 +64,7 @@ export const getMyUserDataService = async ({ token }) => {
 
   setLista(resData.data);
   return lista;
-}; */
+};
 
 export const deleteFileService = async ({ id, token }) => {
   await fetch(`${process.env.REACT_APP_BACKEND}/file/eliminar/${id}`, {
@@ -85,9 +80,44 @@ export const deleteFolderService = async ({ id, token }) => {
   });
 };
 
+export const newFolderService = async ({ token, nombreCarpeta }) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/folder/crearCarpeta`,
+    {
+      method: "POST",
+      headers: { Authorization: token, "Content-Type": "application/json" },
+      body: JSON.stringify({ nombreCarpeta }),
+    }
+  );
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+  return json.data;
+};
+
 export const downloadFileService = async ({ id, token }) => {
   await fetch(`${process.env.REACT_APP_BACKEND}/file/${id}`, {
     method: "GET",
     headers: { Authorization: token },
   });
+};
+
+export const sendFileService = async ({ token, data, id }) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/file/subirArchivo/${id}`,
+    {
+      method: "POST",
+      headers: { Authorization: token },
+      body: data,
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+  return json.data;
 };

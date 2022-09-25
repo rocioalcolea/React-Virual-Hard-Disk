@@ -1,5 +1,6 @@
-import React from "react";
+import { useContext } from "react";
 import { useState } from "react";
+
 import {
   Button,
   Header,
@@ -9,16 +10,25 @@ import {
   Divider,
   Label,
 } from "semantic-ui-react";
+import { AuthContext } from "../context/AuthContext";
+import { sendFileService } from "../services";
 
 function UploadFileModal() {
   const [open, setOpen] = useState(false);
   const [fileName, setFileName] = useState("");
+  const [error, setError] = useState("");
+  const { token, user } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const id = user.id;
+    console.log(id);
     try {
-    } catch (error) {}
+      const data = new FormData(e.target);
+      await sendFileService({ data, token, id });
+    } catch (error) {
+      setError(error.message);
+    }
 
     setOpen(false);
   };
@@ -42,13 +52,15 @@ function UploadFileModal() {
         <Form onSubmit={handleSubmit}>
           <Form.Field inline>
             <input
-              type="text"
+              type="file"
+              id="fichero"
+              name="fichero"
               placeholder="Nombre Nueva Carpeta"
               required
               onChange={(e) => setFileName(e.target.value)}
             />
             <Label pointing="left">
-              Introduce el nombre de la nueva carpeta
+              Añade el nuevo fichero que quieres subir a tu disco duro virtual
             </Label>
           </Form.Field>
           <Divider />
@@ -65,6 +77,7 @@ function UploadFileModal() {
               positive
             />
           </Form.Field>
+          {error && <p>{error}</p>}
         </Form>
       </Modal.Content>
     </Modal>

@@ -13,7 +13,6 @@ export default function HomePage() {
         <div className="Lista">
           <NewFolderModal />
           <UploadFileModal />
-
           <ListFile />
         </div>
       )}

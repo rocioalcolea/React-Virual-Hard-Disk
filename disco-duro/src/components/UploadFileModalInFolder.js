@@ -13,7 +13,7 @@ import {
 import { AuthContext } from "../context/AuthContext";
 import { sendFileService } from "../services";
 
-function UploadFileModal() {
+function UploadFileModal({ id_directorio }) {
   const [open, setOpen] = useState(false);
   const [fileName, setFileName] = useState("");
   const [error, setError] = useState("");
@@ -21,7 +21,7 @@ function UploadFileModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const id = user.id;
+    const id = id_directorio;
     console.log(id);
     try {
       const data = new FormData(e.target);

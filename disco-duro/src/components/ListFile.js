@@ -19,8 +19,7 @@ const ListFile = () => {
   }, []);
 
   useEffect(() => {
-    listarFunctionService(lista, setLista, token, user.id);
-    /*   const listarFunction = async () => {
+    const listarFunction = async () => {
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND}/folder/listar/${user.id}`,
         {
@@ -32,9 +31,10 @@ const ListFile = () => {
 
       setLista(resData.data);
     };
-    listarFunction(); */
+    listarFunction();
   }, [key, token, user.id]);
-  const reload = () => setKey((k) => k + 1);
+
+  //const reload = () => setKey((k) => k + 1);
 
   return (
     <Table striped>

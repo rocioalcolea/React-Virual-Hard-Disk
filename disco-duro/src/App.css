@@ -21,6 +21,38 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.logoHipster {
+  display: flex;
+  flex-direction: column;
+}
+.description {
+  margin: 8rem;
+}
+.description p {
+  font-size: 2rem;
+  text-align: justify;
+}
+.description h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+.description h2 {
+  font-size: 2.5rem;
+}
+.validacion {
+  display: flex;
+  text-align: center;
+  margin: 5rem;
+  align-items: center;
+}
+
+.validacion section {
+  font-size: 3rem;
+  color: #25c6d8;
+}
+.validacion img {
+  width: 700px;
+}
 .App-header .modales {
   margin: 3rem;
 }

@@ -3,13 +3,14 @@ import Modals from "./Modals";
 import { useContext } from "react";
 import { Button } from "semantic-ui-react";
 import hipster from "../img/hombre.png";
+import { Link } from "react-router-dom";
 
 export default function Auth({ infoUsuario, setInfoUsuario }) {
   const { user, logout } = useContext(AuthContext);
   return user ? (
     <div className="bienvenido">
-      <div>
-        <img src={hipster} alt="hipster" />
+      <div className="logoHipster">
+        <img src={hipster} alt="hipster" /> <Link to="/home">My Home</Link>
       </div>
       <div>
         <p>Mis Datos</p>
@@ -18,6 +19,7 @@ export default function Auth({ infoUsuario, setInfoUsuario }) {
           <br />
           {user.mail}
         </h4>
+
         <Button onClick={() => logout()}>Salir</Button>
       </div>
     </div>

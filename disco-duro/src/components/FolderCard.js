@@ -10,7 +10,7 @@ export default function FolderCard({ carpeta, id_directorio }) {
   return (
     <Table.Row>
       <Table.Cell colSpan="2">
-        <Link to={`/home`}>
+        <Link to={`/home/${id_directorio}`}>
           <Icon name="folder" /> {carpeta.name}
         </Link>
       </Table.Cell>

@@ -9,6 +9,7 @@ import RaizPage from "./pages/RaizPage";
 import HomePage from "./pages/HomePage";
 import ValidarPage from "./pages/ValidarPage";
 import ConfirmacionPage from "./pages/ConfirmacionPage";
+import ListFolder from "./components/ListFolder";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<RaizPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/confirmacion" element={<ConfirmacionPage />} />
+        <Route path="/home/:id_directorio" element={<ListFolder />} />
         <Route
           path="/usuarios/validar/:registrationCode"
           element={<ValidarPage />}

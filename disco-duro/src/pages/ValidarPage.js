@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Message } from "semantic-ui-react";
+import nube from "../img/nubeDispositivos.png";
 
 const ValidarPage = () => {
   const { registrationCode } = useParams();
@@ -24,7 +26,14 @@ const ValidarPage = () => {
     validateFunction();
   }, [registrationCode]);
 
-  return <section>{message && <p>{message}</p>}</section>;
+  return (
+    <div className="validacion">
+      <img src={nube} alt="nube" />
+      <section>
+        <Message color="blue">{message && <p>{message}</p>}</Message>
+      </section>
+    </div>
+  );
 };
 
 export default ValidarPage;

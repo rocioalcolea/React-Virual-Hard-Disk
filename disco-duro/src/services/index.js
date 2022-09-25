@@ -52,7 +52,7 @@ export const getMyUserDataService = async ({ token }) => {
   return json.data;
 };
 
-export const listarFunctionService = async (lista, setLista, token, id) => {
+/* export const listarFunctionService = async (lista, setLista, token, id) => {
   const res = await fetch(
     `${process.env.REACT_APP_BACKEND}/folder/listar/${id}`,
     {
@@ -64,7 +64,7 @@ export const listarFunctionService = async (lista, setLista, token, id) => {
 
   setLista(resData.data);
   return lista;
-};
+}; */
 
 export const deleteFileService = async ({ id, token }) => {
   await fetch(`${process.env.REACT_APP_BACKEND}/file/eliminar/${id}`, {

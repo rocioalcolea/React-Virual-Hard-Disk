@@ -17,7 +17,7 @@ export default function RaizPage() {
           Registrate y vive esta nueva experiencia de acceder a tus archivos
           donde y cuando quieras
         </p>
-        <h3>Estás a un clic de la nube</h3>
+        <h2>Estás a un clic de la nube</h2>
       </div>
     </main>
   );

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export default function FileCard({ archivo }) {
   const { token } = useContext(AuthContext);
   const id = archivo.id_archivo;
+  const name = archivo.name_real;
 
   return (
     <Table.Row>
@@ -15,7 +16,7 @@ export default function FileCard({ archivo }) {
       <Table.Cell>
         <Icon
           name="download"
-          onClick={() => downloadFileService({ id, token })}
+          onClick={() => downloadFileService({ id, token, name })}
         />
       </Table.Cell>
       <Table.Cell>

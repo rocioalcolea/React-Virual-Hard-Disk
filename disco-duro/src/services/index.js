@@ -98,11 +98,17 @@ export const newFolderService = async ({ token, nombreCarpeta }) => {
   return json.data;
 };
 
-export const downloadFileService = async ({ id, token }) => {
-  await fetch(`${process.env.REACT_APP_BACKEND}/file/${id}`, {
+export const downloadFileService = async ({ id, token, name }) => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/file/${id}`, {
     method: "GET",
     headers: { Authorization: token },
   });
+  const body = await response.blob();
+  const fileUrl = URL.createObjectURL(body);
+  const link = document.createElement("a");
+  link.href = fileUrl;
+  link.download = name;
+  link.click();
 };
 
 export const sendFileService = async ({ token, data, id }) => {
